@@ -1,5 +1,22 @@
 # Darknet Docker Images
 
+## Fork for specific purpose
+Setup the enviornment
+* Windows Clint(ssh w/ X Server e.g.mobaxterm) -> Linux server(docker)
+* login to Linux server
+```sh
+$ git clone https://github.com/ryanchang5885/darknet-docker.git
+// e.g. an option to support cpu only and opencv 
+$ docker build -t mydenv . --build-arg CONFIG=cpu-cv
+$ cd ..
+$ git clone https://github.com/ryanchang5885/darknet.git && cd darknet
+$ docker run --rm --name my-denv -it --network=host -v $XAUTH:/root/.Xauthority -e DISPLAY=$DISPLAY -v $PWD:/darknet -w /darknet mydenv
+// you could build and run the darknet inside the container
+$ make -j10 && ./darknet imtest ./data/eagle.jpg
+```
+
+## Original INFO -->
+
 Docker images for Darknet Yolo v4, v3 and v2. [AlexeyAB/darknet](https://github.com/AlexeyAB/darknet "AlexeyAB/darknet")
 
 ## Base Image Tags
